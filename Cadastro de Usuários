@@ -1,0 +1,69 @@
+import pandas as pd
+
+# Inicializa o dicionário Cadastro
+Cadastro = {}
+
+# Função para adicionar um novo registro solicitando entrada
+def adicionar_cadastro_com_input():
+    print("\n--- Adicionar Novo Cadastro ---")
+    nome_completo = input("Digite o Nome Completo: ")
+    numero_chamada = input("Digite o Número de Chamada: ")
+    sala_classe = input("Digite a Sala/Classe: ")
+    periodo = input("Digite o Período (Manhã/Tarde): ")
+    telefone = input("Digite o Número de Contato: ")
+# Ajustado para ter um espaço após a pergunta
+
+    Cadastro[nome_completo] = {
+        "Número de Chamada": numero_chamada,
+        "Sala/Classe": sala_classe,
+        "Período": periodo,
+        "Telefone": telefone
+# Corrigido de 'contato' para 'telefone'
+    }
+    print(f"Cadastro de {nome_completo} adicionado com sucesso!")
+
+# Exemplo de adicionar um cadastro solicitando entrada
+# Descomente a linha abaixo e execute a célula para adicionar um novo cadastro interativamente
+adicionar_cadastro_com_input()
+
+import pandas as pd
+
+# Converta o dicionário Cadastro para um DataFrame do pandas
+# O argumento 'orient="index"' faz com que as chaves do dicionário (nomes) se tornem o índice do DataFrame
+df_cadastro = pd.DataFrame.from_dict(Cadastro, orient='index')
+
+# Redefinir o índice para transformar 'nome_completo' de índice em uma coluna comum
+df_cadastro = df_cadastro.reset_index()
+df_cadastro = df_cadastro.rename(columns={'index': 'Nome Completo'})
+
+
+# Defina o nome do arquivo para o arquivo Excel
+excel_filename = 'cadastros.xlsx'
+
+# Salvar o DataFrame em um arquivo Excel
+# index=False impede que o pandas escreva o índice do DataFrame como uma coluna no Excel
+df_cadastro.to_excel(excel_filename, index=False)
+
+print(f"Informações de cadastro salvas com sucesso em '{excel_filename}'")
+
+
+
+from google.colab import drive
+import os
+
+# Montar o Google Drive
+drive.mount('/content/drive')
+
+# Defina os caminhos de origem e destino
+source_path = '/content/cadastros.xlsx'
+destination_path = '/content/drive/MyDrive/cadastros.xlsx'
+
+# Verifique se o arquivo de origem existe antes de copiar
+if os.path.exists(source_path):
+   # Copiar o arquivo para o Google Drive
+    !cp "{source_path}" "{destination_path}"
+    print(f"'{source_path}' copiado para '{destination_path}' com sucesso!")
+    print("Você pode encontrar o arquivo 'cadastros.xlsx' na pasta 'Meu Drive' do seu Google Drive.")
+    display(df_cadastro)
+else:
+    print(f"Erro: O arquivo '{source_path}' não foi encontrado.")
