@@ -1,0 +1,111 @@
+import pandas as pd
+
+excel_file = pd.ExcelFile("https://docs.google.com/spreadsheets/d/1RPJV5S7TYG8LvlKnmiZrzSjoLnbf1he4ytf1kPjFQOo/export?format=xlsx")
+print("As abas disponíveis são:", excel_file.sheet_names)
+
+df = pd.read_excel(excel_file, sheet_name="terror")
+
+print(df)
+import matplotlib.pyplot as plt
+
+import matplotlib.pyplot as plt
+
+df_plot = df_plot_interactive.dropna(subset=['QUANTAS SAIDAS TEVE'])
+
+plt.figure(figsize=(12, 6))
+plt.bar(df_plot[category_column_name], df_plot['QUANTAS SAIDAS TEVE'], color='skyblue')
+
+plt.xlabel(f'Livros de {category_column_name.capitalize()}')
+plt.ylabel('Quantas Saídas Teve')
+plt.xticks(rotation=45, ha='right')
+plt.title(f'Quantas Saídas Teve por Livro na Aba "{selected_sheet.capitalize()}"')
+plt.tight_layout()
+
+plt.show()
+
+import pandas as pd
+
+excel_file = pd.ExcelFile("https://docs.google.com/spreadsheets/d/1RPJV5S7TYG8LvlKnmiZrzSjoLnbf1he4ytf1kPjFQOo/export?format=xlsx")
+print("As abas disponíveis são:", excel_file.sheet_names)
+
+# Usar as abas disponíveis do excel_file para maior robustez
+available_sheets = [sheet.lower() for sheet in excel_file.sheet_names]
+
+print("Por favor, escolha uma das abas disponíveis para gerar o gráfico interativo:")
+print(f"Opções: {', '.join(available_sheets)}")
+
+selected_sheet = input("Digite o nome da aba escolhida: ").lower()
+
+while selected_sheet not in available_sheets:
+    print(f"Opção inválida. Por favor, escolha entre {', '.join(available_sheets)}.")
+    selected_sheet = input("Digite o nome da aba escolhida: ").lower()
+
+print(f"Você escolheu a aba: {selected_sheet}")
+
+df_selected = pd.read_excel(excel_file, sheet_name=selected_sheet)
+print(f"Dados da aba '{selected_sheet}' carregados com sucesso. Primeiras 5 linhas:")
+print(df_selected.head())
+
+df_plot_interactive = df_selected.copy()
+df_plot_interactive = df_plot_interactive.sort_values(by='QUANTAS SAIDAS TEVE', ascending=False)
+
+# Identify the category column name based on the selected sheet
+category_column_name = selected_sheet.upper()
+
+print(f"DataFrame preparado para plotagem interativa (ordenado pela coluna 'QUANTAS SAIDAS TEVE' em ordem decrescente). Primeiras 5 linhas da aba '{selected_sheet}':")
+print(df_plot_interactive.head())
+
+# Certifique-se de que 'excel_file' foi definido executando a célula UYWN2V3wwvf2 antes desta.
+
+# Usar as abas disponíveis do excel_file para maior robustez
+available_sheets = [sheet.lower() for sheet in excel_file.sheet_names]
+
+print("Por favor, escolha uma das abas disponíveis para gerar o gráfico interativo:")
+print(f"Opções: {', '.join(available_sheets)}")
+
+selected_sheet = input("Digite o nome da aba escolhida: ").lower()
+
+while selected_sheet not in available_sheets:
+    print(f"Opção inválida. Por favor, escolha entre {', '.join(available_sheets)}.")
+    selected_sheet = input("Digite o nome da aba escolhida: ").lower()
+
+print(f"Você escolheu a aba: {selected_sheet}")
+
+df_selected = pd.read_excel(excel_file, sheet_name=selected_sheet)
+print(f"Dados da aba '{selected_sheet}' carregados com sucesso. Primeiras 5 linhas:")
+print(df_selected.head())
+
+df_plot_interactive = df_selected.copy()
+df_plot_interactive = df_plot_interactive.sort_values(by='QUANTAS SAIDAS TEVE', ascending=False)
+
+# Identify the category column name based on the selected sheet
+category_column_name = selected_sheet.upper()
+
+print(f"DataFrame preparado para plotagem interativa (ordenado pela coluna 'QUANTAS SAIDAS TEVE' em ordem decrescente). Primeiras 5 linhas da aba '{selected_sheet}':")
+print(df_plot_interactive.head())
+
+available_sheets = ['ficção', 'terror', 'aventura']
+print("Por favor, escolha uma das abas disponíveis para gerar o gráfico interativo:")
+print(f"Opções: {', '.join(available_sheets)}")
+
+selected_sheet = input("Digite o nome da aba escolhida: ").lower()
+
+while selected_sheet not in available_sheets:
+    print(f"Opção inválida. Por favor, escolha entre {', '.join(available_sheets)}.")
+    selected_sheet = input("Digite o nome da aba escolhida: ").lower()
+
+print(f"Você escolheu a aba: {selected_sheet}")
+
+df_selected = pd.read_excel(excel_file, sheet_name=selected_sheet)
+print(f"Dados da aba '{selected_sheet}' carregados com sucesso. Primeiras 5 linhas:")
+print(df_selected.head())
+
+df_plot_interactive = df_selected.copy()
+
+df_plot_interactive = df_plot_interactive.sort_values(by='QUANTAS SAIDAS TEVE', ascending=False)
+
+# Identify the category column name based on the selected sheet
+category_column_name = selected_sheet.upper()
+
+print(f"DataFrame preparado para plotagem interativa (ordenado pela coluna 'QUANTAS SAIDAS TEVE' em ordem decrescente). Primeiras 5 linhas da aba '{selected_sheet}':")
+print(df_plot_interactive.head())
