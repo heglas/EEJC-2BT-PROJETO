@@ -1,0 +1,44 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Caminho do arquivo enviado
+excel_path = "/mnt/data/livros.xlsx"
+
+# Lê todas as abas do Excel
+sheets = pd.read_excel(excel_path, sheet_name=None)
+
+categorias = []
+valores = []
+
+for nome_aba, df in sheets.items():
+    # Identifica a coluna de quantidade de saídas
+    col_saida = df.columns[-1]  # última coluna
+
+    # Converte para numérico
+    serie = pd.to_numeric(df[col_saida], errors="coerce")
+
+    # Soma total da categoria
+    total = serie.sum()
+
+    categorias.append(nome_aba)
+    valores.append(total)
+
+# Criação do gráfico de dispersão
+x = np.arange(len(categorias))
+
+plt.figure(figsize=(8,6))
+plt.scatter(x, valores, s=200, edgecolor="black")
+
+# Anotações
+for i, v in enumerate(valores):
+    plt.annotate(f"{v}", (x[i], valores[i]+0.2), ha='center')
+
+plt.xticks(x, categorias)
+plt.xlabel("Categoria")
+plt.ylabel("Total de Saídas")
+plt.title("Gráfico de Dispersão das Categorias de Livros")
+plt.grid(axis="y", linestyle="--", alpha=0.5)
+plt.tight_layout()
+
+plt.show()
